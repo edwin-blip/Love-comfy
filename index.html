@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Comfort Wintah ❤️</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;font-family:Georgia,"Times New Roman",serif;background:linear-gradient(135deg,#16000a,#3b0017,#120006);color:#fff;display:flex;justify-content:center;align-items:center;overflow:hidden}
+.page{width:100%;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:25px;text-align:center}
+.card{width:100%;max-width:420px;padding:35px 25px;border-radius:25px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);box-shadow:0 0 40px rgba(255,0,80,.25);backdrop-filter:blur(12px)}
+h1{font-size:32px;margin-bottom:15px}.subtitle{color:#ffc5d8;margin-bottom:25px;line-height:1.6}
+.password{width:100%;padding:16px;border:none;outline:none;border-radius:15px;text-align:center;font-size:25px;letter-spacing:8px;background:rgba(255,255,255,.95);color:#550020;margin-bottom:18px}
+button{width:100%;padding:15px;border:none;border-radius:15px;background:linear-gradient(90deg,#ff174f,#ff4f81);color:#fff;font-size:18px;font-weight:bold;cursor:pointer;box-shadow:0 8px 25px rgba(255,23,79,.35);transition:.3s}
+button:active{transform:scale(.96)}.error{color:#ff9db7;margin-top:15px;min-height:20px}
+#welcomePage,#lovePage{display:none}.heart{font-size:65px;animation:heartbeat 1.4s infinite;margin-bottom:15px}
+.love-title{font-size:38px;line-height:1.25;margin-bottom:20px}.love-message{font-size:21px;line-height:1.8;color:#ffd7e3}
+.signature{margin-top:30px;font-size:19px;color:#ff9fbc;font-style:italic}
+.floating-heart{position:fixed;bottom:-30px;font-size:20px;animation:floatUp linear forwards;pointer-events:none}
+.fade{animation:fadeIn 1.2s ease forwards}
+@keyframes heartbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
+@keyframes floatUp{from{transform:translateY(0) rotate(0deg);opacity:1}to{transform:translateY(-110vh) rotate(360deg);opacity:0}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+
+<section class="page" id="passwordPage">
+<div class="card fade">
+<div class="heart">❤️</div>
+<h1>For My Wintah 🥰</h1>
+<p class="subtitle">There is a little surprise waiting for you, Comfort Wintah.<br>Enter the secret 6-digit password 💕</p>
+<input id="password" class="password" type="password" inputmode="numeric" maxlength="6" placeholder="••••••">
+<button onclick="checkPassword()">Unlock My Heart ❤️</button>
+<p class="error" id="error"></p>
+</div>
+</section>
+
+<section class="page" id="welcomePage">
+<div class="card fade">
+<div class="heart">🥰</div>
+<h1>Welcome, My Love ❤️</h1>
+<p class="subtitle">You found your way in...<br><br>And now there's something special I want you to see. 💕</p>
+<button onclick="showLovePage()">Welcome, My Wintah 💋</button>
+</div>
+</section>
+
+<section class="page" id="lovePage">
+<div class="card fade">
+<div class="heart">💖</div>
+<h1 class="love-title">Comfort Wintah ❤️</h1>
+<p class="love-message">
+I love you forever and always. ❤️<br><br>
+No matter where life takes us, my heart will always have a special place for you.<br><br>
+You are my love, my happiness, and one of the most beautiful parts of my life. 🥰<br><br>
+Forever yours. 💋❤️
+</p>
+<p class="signature">With all my heart,<br>Your Love ❤️</p>
+</div>
+</section>
+
+<script>
+const correctPassword="153490";
+function checkPassword(){
+const entered=document.getElementById("password").value;
+const error=document.getElementById("error");
+if(entered===correctPassword){
+document.getElementById("passwordPage").style.display="none";
+document.getElementById("welcomePage").style.display="flex";
+createHearts();
+}else{
+error.textContent="Hmm... that's not the secret password 🥺❤️";
+document.getElementById("password").value="";
+setTimeout(()=>error.textContent="",2500);
+}}
+function showLovePage(){
+document.getElementById("welcomePage").style.display="none";
+document.getElementById("lovePage").style.display="flex";
+createHearts();
+}
+function createHearts(){
+setInterval(()=>{
+const heart=document.createElement("div");
+heart.className="floating-heart";
+const hearts=["❤️","💖","💕","💗","💓","💋"];
+heart.textContent=hearts[Math.floor(Math.random()*hearts.length)];
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=(4+Math.random()*4)+"s";
+heart.style.fontSize=(15+Math.random()*25)+"px";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),8000);
+},500);
+}
+document.getElementById("password").addEventListener("keydown",e=>{
+if(e.key==="Enter")checkPassword();
+});
+</script>
+</body>
+</html>
